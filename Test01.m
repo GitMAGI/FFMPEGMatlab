@@ -8,8 +8,11 @@ input_path = 'C:\Workspace\Python\FFMPEGContinous\output\';
 input_file_yuv = 'dataRaw_20190626-103846.yuv';
 
 pathfilename = fullfile(input_path, input_file_yuv);
-
 f_hndlr = dir(pathfilename);
+if exist(pathfilename, 'file') ~= 2
+    fprintf(2, 'File %s doesn''t exist!\n\n', pathfilename);
+    return;
+end
 f_size = f_hndlr.bytes;
 
 w = 192;
@@ -31,10 +34,12 @@ pick_a_frame = randperm(n_frames, 1);
 imshow(RGBs{pick_a_frame});
 title(sprintf('Frame %d' ,pick_a_frame));
 
-for i=1:1:min(1000, n_frames)
+max_frames = 1000;
+frame_rate_plot = 0.02;
+for i=1:1:min(max_frames, n_frames)
     imshow(RGBs{i});
     title(sprintf('Frame %d' ,i));
-    pause(0.05);
+    pause(frame_rate_plot);
 end
 
 fprintf('Completato\n');
