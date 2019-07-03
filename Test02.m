@@ -6,7 +6,7 @@ fprintf('Avvio\n');
 
 input_path = 'C:\Workspace\Python\FFMPEGContinous\output\';
 input_ffmpeg_raw = 'dataRaw_20190626-103846.rgb24';
-input_my_processing = 'data_20190702-231200.rgb24';
+input_my_processing = 'data_20190703-165620.rgb24';
 
 s_width = 108;
 s_height = 192;
@@ -51,8 +51,8 @@ pick_a_frame = randperm(min(n_frames_ffmpeg_raw, n_frames_my_processing), 1);
 subplot(1,2,1), imshow(frames_ffmpeg_raw{pick_a_frame}), title(sprintf('Frame %d' ,pick_a_frame));
 subplot(1,2,2), imshow(frames_my_processing{pick_a_frame}), title(sprintf('Frame %d' ,pick_a_frame));
 
-max_frames = 24;
-frame_rate_plot = 0.5;
+max_frames = 1000;
+frame_rate_plot = 0.01;
 for i=1:1:min([max_frames, max([n_frames_ffmpeg_raw, n_frames_my_processing])])
     if i<= n_frames_ffmpeg_raw
         subplot(1,3,1), imshow(frames_ffmpeg_raw{i}), title(sprintf('Frame %d' ,i));
